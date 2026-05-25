@@ -1,0 +1,31 @@
+Query 1: Quantos jogos estão registados na base de dados?
+Resposta: db.jogos.countDocuments()
+
+----------------------------------------------------------------------------------------
+
+Query 2: Quantos jogos pertencem à categoria "Family"?
+Resposta: db.jogos.countDocuments({ category: "Family" })
+
+----------------------------------------------------------------------------------------
+
+Query 3: Qual a lista de autores (ordenada alfabeticamente e sem repetições)?
+Resposta: db.jogos.distinct("autores.name").sort()
+
+----------------------------------------------------------------------------------------
+
+Query 4: Qual a distribuição de jogos por ano de lançamento (quantos jogos foram lançados em cada ano)?
+Resposta: db.jogos.aggregate([
+  { $group: { _id: "$year", quantidade: { $sum: 1 } } },
+  { $sort: { _id: 1 } }
+])
+
+----------------------------------------------------------------------------------------
+
+Query 5: Qual a distribuição de jogos por editora (quantos jogos cada editora tem registados)?
+Resposta: db.jogos.aggregate([
+  { $unwind: "$editoras" },
+  { $group: { _id: "$editoras.name", quantidade: { $sum: 1 } } },
+  { $sort: { quantidade: -1 } } 
+])
+
+
