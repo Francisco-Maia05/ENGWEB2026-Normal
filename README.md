@@ -15,28 +15,9 @@ A persistência é garantida através de um contentor MongoDB. Para facilitar a 
 
 ### Instruções de Execução
 Para colocar o sistema do Exercício 1 em funcionamento:
-1. Abrir o terminal na diretoria raiz do exercício: `cd ex1`
+1. Abrir o terminal na diretoria raiz;
 2. Construir e iniciar os contentores em background: `docker-compose up -d --build`
-3. A API ficará disponível no endereço local configurado (consultar porta mapeada no `docker-compose.yml`, ex: `http://localhost:XXXX`).
-
-### Respostas Textuais (Queries MongoDB)
-Conforme solicitado no enunciado, abaixo encontram-se as queries correspondentes às perguntas do MongoDB (também disponíveis no ficheiro `queries.txt`):
-
-1. **Quantos jogos existem na base de dados?**
-   `db.jogos.countDocuments()`
-
-2. **Quantos jogos têm a categoria "Card Game"?**
-   `db.jogos.countDocuments({ categorias: "Card Game" })`
-
-3. **Produz uma lista de todos os autores (nome), ordenada alfabeticamente.**
-   `db.jogos.distinct("autores.name").sort()`
-
-4. **Produz uma lista com os jogos recomendados para 4 jogadores (ou seja, 4 tem de estar entre os valores de minPlayers e maxPlayers).**
-   `db.jogos.find({ minPlayers: { $lte: 4 }, maxPlayers: { $gte: 4 } })`
-
-*(Após testar os serviços, pode encerrar com `docker-compose down`)*
-
----
+3. A API ficará disponível no endereço local configurado  `http://localhost:17000`
 
 ## Exercício 2: Engenharia Reversa (Lista de Leituras)
 
@@ -50,11 +31,10 @@ A aplicação utiliza uma base de dados MongoDB isolada numa rede virtual Docker
 
 ### Instruções de Execução
 Para colocar o sistema do Exercício 2 em funcionamento:
-1. Abrir o terminal na diretoria raiz do exercício: `cd ex2`
+1. Abrir o terminal na diretoria raiz;
 2. Construir e iniciar os contentores: `docker-compose up -d --build`
 3. A arquitetura ficará disponível nos seguintes acessos:
-   * **Frontend (Nginx estático):** Acessível num browser em `http://localhost:19021` (O Nginx serve o ficheiro `index.html` em formato read-only por segurança).
+   * **Frontend (Nginx estático):** Acessível num browser em `http://localhost:19021`.
    * **API de Dados (Node.js):** Acessível em `http://localhost:19020` (recebe pedidos da interface).
    * **Base de Dados (MongoDB):** Protegida na rede interna, sem acesso exterior.
 
-*(Após testar os serviços, pode encerrar com `docker-compose down`)*
