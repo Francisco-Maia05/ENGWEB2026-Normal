@@ -1,0 +1,44 @@
+[
+  {
+    "titulo": "Ensaio sobre a Cegueira",
+    "autor": "José Saramago",
+    "paginas": 328,
+    "genero": "Ficção",
+    "lido": true
+  },
+  {
+    "titulo": "1984",
+    "autor": "George Orwell",
+    "paginas": 314,
+    "genero": "Ficção Científica",
+    "lido": false
+  },
+  {
+    "titulo": "O Senhor dos Anéis: A Irmandade do Anel",
+    "autor": "J.R.R. Tolkien",
+    "paginas": 432,
+    "genero": "Fantasia",
+    "lido": true
+  },
+  {
+    "titulo": "Os Maias",
+    "autor": "Eça de Queirós",
+    "paginas": 714,
+    "genero": "Romance Clássico",
+    "lido": false
+  },
+  {
+    "titulo": "A Guerra dos Tronos",
+    "autor": "George R.R. Martin",
+    "paginas": 800,
+    "genero": "Fantasia",
+    "lido": false
+  },
+  {
+    "titulo": "O Principezinho",
+    "autor": "Antoine de Saint-Exupéry",
+    "paginas": 96,
+    "genero": "Fábula",
+    "lido": true
+  }
+]
