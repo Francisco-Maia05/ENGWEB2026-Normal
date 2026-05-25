@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Jogos de Tabuleiro",
+    "version": "1.0.0",
+    "description": "API desenvolvida para o Exame de Engenharia Web 2026"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:17000"
+    }
+  ],
+  "paths": {
+    "/jogos": {
+      "get": {
+        "summary": "Devolve a lista de jogos ou filtra por editora",
+        "parameters": [
+          {
+            "name": "editora",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Nome da editora para filtrar os jogos"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Sucesso" }
+        }
+      },
+      "post": {
+        "summary": "Acrescenta um novo jogo à BD",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Criado com sucesso" }
+        }
+      }
+    },
+    "/jogos/{id}": {
+      "get": {
+        "summary": "Devolve toda a informação de um jogo",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Sucesso" },
+          "404": { "description": "Não encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Altera o registo de um jogo",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object" } } }
+        },
+        "responses": {
+          "200": { "description": "Atualizado com sucesso" }
+        }
+      },
+      "delete": {
+        "summary": "Elimina um jogo da BD",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Removido com sucesso" }
+        }
+      }
+    },
+    "/autores": {
+      "get": {
+        "summary": "Lista de autores ordenada alfabeticamente",
+        "responses": {
+          "200": { "description": "Sucesso" }
+        }
+      }
+    },
+    "/categorias": {
+      "get": {
+        "summary": "Lista de categorias ordenada alfabeticamente",
+        "responses": {
+          "200": { "description": "Sucesso" }
+        }
+      }
+    }
+  }
+}
