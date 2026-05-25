@@ -38,7 +38,7 @@ Conforme solicitado no enunciado, abaixo encontram-se as queries correspondentes
 
 ---
 
-## 📚 Exercício 2: Engenharia Reversa (Lista de Leituras)
+## Exercício 2: Engenharia Reversa (Lista de Leituras)
 
 A solução do Exercício 2 encontra-se na diretoria `/ex2` e contempla uma arquitetura full-stack (MEVN) para suportar uma interface de gestão de leituras (Vue.js).
 
