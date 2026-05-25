@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: engweb2026-mongodb
+    networks:
+      - engweb2026-network
+    restart: always
+
+  mongo-seed:
+    image: mongo:latest
+    container_name: engweb2026-seed
+    depends_on:
+      - mongodb
+    networks:
+      - engweb2026-network
+    volumes:
+      - ./ex1/jogos.json:/data/jogos.json
+      - ./ex2/livros.json:/data/livros.json
+    command: >
+      bash -c "
+      mongoimport --host mongodb -d jogostabuleiro -c jogos --jsonArray --file /data/jogos.json &&
+      mongoimport --host mongodb -d readinglist -c livros --jsonArray --file /data/livros.json
+      "
+
+  # Ex1
+  api-ex1:
+    build:
+      context: ./ex1
+      dockerfile: Dockerfile
+    container_name: engweb2026-api-ex1
+    ports:
+      - "17000:17000"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/jogostabuleiro
+    depends_on:
+      - mongodb
+    networks:
+      - engweb2026-network
+
+  # Ex2
+  api-ex2:
+    build:
+      context: ./ex2
+      dockerfile: Dockerfile
+    container_name: engweb2026-api-ex2
+    ports:
+      - "19020:19020"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/readinglist
+    depends_on:
+      - mongodb
+    networks:
+      - engweb2026-network
+
+
+  frontend:
+    image: nginx:alpine
+    container_name: engweb2026-frontend
+    ports:
+      - "19021:80"
+    volumes:
+      - ./ex2/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - api-ex2
+    networks:
+      - engweb2026-network
+
+networks:
+  engweb2026-network:
+    driver: bridge
